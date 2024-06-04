@@ -41,14 +41,8 @@ public class Services {
 
     @Override
     public String toString() {
-        return "Services{" +
-                "laundry=" + laundry +
-                ", spa=" + spa +
-                ", laundryUses=" + laundryUses +
-                ", spaUses=" + spaUses +
-                ", laundryCost=" + getLaundryCost() +
-                ", spaCost=" + getSpaCost() +
-                '}';
+        return String.format("Laundry: %b | Uses: %2d | Cost: %8.2f\nSpa: %b     | Uses: %2d | Cost: %8.2f",
+                laundry, laundryUses, getLaundryCost(), spa, spaUses, getSpaCost());
     }
 }
 

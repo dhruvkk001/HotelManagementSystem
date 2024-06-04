@@ -25,10 +25,13 @@ public class Room {
     public double getTotalRoomCost(){
         return price * daysBooked;
     }
+    //comments
+    /* multiline comments*/
 
     @Override
     public String toString() {
-        return "Room{" + "type=" + type + ", price=" + price + ", daysBooked=" + daysBooked + ",totalCost=" +getTotalRoomCost()+ '}';
+        return String.format("Room Type: %-7s | Price per Day: %8.2f | Days Booked: %3d | Total Cost: %8.2f",
+                type, price, daysBooked, getTotalRoomCost());
     }
 }
 

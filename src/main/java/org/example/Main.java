@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Main{
+class Main{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -34,7 +34,7 @@ public class Main{
         Booking booking = new Booking(name, aadharId, services);
 
         while (true) {
-            System.out.println("Enter room type to book (GOLD Price : 200, SILVER Price: 150, BRONZE Price:100) or 'done' to finish:");
+            System.out.println("Enter room type to book (GOLD, SILVER, BRONZE) or 'done' to finish:");
             String roomType = scanner.nextLine();
 
             if (roomType.equalsIgnoreCase("done")) {
@@ -48,30 +48,30 @@ public class Main{
                 System.out.println("Invalid room type. Try again.");
                 continue;
             }
+
             System.out.println("Enter the number of days to book the room:");
             int daysBooked = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // consume the newline
 
-            double price;
+            double pricePerDay;
             switch (type) {
                 case GOLD:
-                    price = 200.0;
+                    pricePerDay = 200.0;
                     break;
                 case SILVER:
-                    price = 150.0;
+                    pricePerDay = 150.0;
                     break;
                 case BRONZE:
-                    price = 100.0;
+                    pricePerDay = 100.0;
                     break;
                 default:
-                    price = 0.0;
+                    pricePerDay = 0.0;
             }
 
-            Room room = new Room(type, price,daysBooked);
+            Room room = new Room(type, pricePerDay, daysBooked);
             booking.addRoom(room);
         }
 
-        System.out.println("Booking summary:");
         System.out.println(booking);
     }
 }
