@@ -8,7 +8,7 @@ public class Booking {
     private String aadharId;
     private List<Room> rooms;
     private Services services;
-    private static final double GST =1.5;
+    private static final double GST = 1.5;
 
     public Booking(String name, String aadharId, Services services) {
         this.name = name;
@@ -40,19 +40,29 @@ public class Booking {
     public double calculateTotalCost() {
         double roomCost = rooms.stream().mapToDouble(Room::getPrice).sum();
         double serviceCost = services.getLaundryCost() + services.getSpaCost();
-        double  totalCost = roomCost + serviceCost;
-        return totalCost +(totalCost * GST);
+        double totalCost = roomCost + serviceCost;
+        return totalCost + (totalCost * GST);
     }
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "name='" + name + '\'' +
-                ", aadharId='" + aadharId + '\'' +
-                ", rooms=" + rooms +
-                ", services=" + services +
-                ", totalCostWithGST=" + calculateTotalCost() +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Booking Summary\n");
+        sb.append("========================\n");
+        sb.append(String.format("Name: %s\n", name));
+        sb.append(String.format("Aadhar ID: %s\n", aadharId));
+        sb.append("\nRooms:\n");
+        sb.append("------------------------\n");
+        for (Room room : rooms) {
+            sb.append(room.toString()).append("\n");
+        }
+        sb.append("\nServices:\n");
+        sb.append("------------------------\n");
+        sb.append(services.toString()).append("\n");
+        sb.append("------------------------\n");
+        sb.append(String.format("Total Cost (including GST): %.2f\n", calculateTotalCost()));
+        sb.append("========================\n");
+        return sb.toString();
     }
 }
 
